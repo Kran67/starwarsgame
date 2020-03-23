@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>StarWars - Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="css/main.css" />
+    <script type="module">
+        import "./js/game.js";
+    </script>
+</head>
+<body>
+    <header>
+        <h1 class="title">StarWars - Game</h1>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="newGameBtn">Nouvelle partie</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="aboutBtn">A propos et règles</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="configBtn">Configuration</button>
+    </header>
+    <section class="star-wars">
+        <div class="star-wars-intro">
+            <p class="intro-text">
+                A few days ago, during...
+            </p>
+            <!-- Logo Image or Text goes in here -->
+            <h2 class="main-logo">
+                <img src="images/Star_Wars_Logo.png" />
+            </h2>
+            <!-- All Scrolling Content Goes in here -->
+            <div class="main-content">
+                <div class="fade"></div>
+                <div class="title-content">
+                    <p class="content-header">EPISODES XX<br />A new game</p>
+                    <br />
+                    <p class="content-body">
+                        La République Galactique est en pleine ébullition. La taxation des routes commerciales reliant les systèmes éloignés provoque la discorde.<br />
+                        Pour régler la question, la cupide Fédération du Commerce et ses redoutables vaisseaux de guerre imposent un blocus à la petite planète Naboo.<br />
+                        Face à ce dangereux engrenage, alors que le Congrès de la République s’enlise dans des débats sans fin, le Chancelier Suprême charge en secret deux Chevaliers Jedi, gardiens de la paix et de la justice dans la galaxie, de résoudre le conflit…
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <main class="hidden">
+        <section class="top">
+            <h3>Planète :</h3>&nbsp;<h3 id='planetName'></h3><img id="planetImg" src="" alt="" width="128" height="128" />
+        </section>
+        <div class="main">
+            <section class="left">
+                <h2>Joueur 1</h2>
+                <div>
+                    <label>Nom</label> : <span id="player1Name"></span>
+                </div>
+                <div>
+                    <label>Vie</label> : <span id="lifePlayer1" class="life"></span>
+                </div>
+                <div>
+                    <label>Arme</label> : <span id="weaponPlayer1"></span>
+                </div><br />
+                <img id="player1Img" class="playerImage" />
+                <span id="hit1" class="hidden" data-damages="0"></span>
+            </section>
+            <section class="middle"></section>
+            <section class="right">
+                <h2>Joueur 2</h2>
+                <div>
+                    <label>Nom</label> : <span id="player2Name"></span>
+                </div>
+                <div>
+                    <label>Vie</label> : <span id="lifePlayer2" class="life"></span>
+                </div>
+                <div>
+                    <label>Arme</label> : <span id="weaponPlayer2"></span>
+                </div><br />
+                <img id="player2Img" class="playerImage" />
+                <span id="hit2" class="hidden" data-damages="0"></span>
+            </section>
+        </div>
+    </main>
+    <div id="glass" class="hidden"></div>
+    <div id="character-choice" class="hidden">
+        <h4>Joueur<span id="playerNum">1</span>, sélectionne ton personnage</h4>
+        <div class="rebellion">
+            <img src="" />
+            <div class="rebellion-characters"></div>
+        </div>
+        <br />
+        <div class="darkside">
+            <img src="" />
+            <div class="darkside-characters"></div>
+        </div><br /><br />
+        <div>
+            <button id="btnValidChoice" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" disabled data-playernum="1">Valider ce choix</button>
+            <button id="btnStartGame" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored hidden">Commencer</button>
+        </div>
+    </div>
+    <div id="combatWindow" class="hidden">
+        <main class="main">
+            <section class="middle">
+                <img src="images/fight-text.png" width="300" />
+                <img src="images/fight.png" />
+                <h4 id="message">Joueur<span id="playerNumCombat"></span>, que voulez vous faire?</h4>
+                <div class="btnsContainer">
+                    <button id="btnAttack" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Attaquer</button>
+                    <span class="sep"></span>
+                    <button id="btnDefend" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Defendre</button>
+                    <button id="btnReload" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored hidden">recommencer</button>
+                </div>
+            </section>
+        </main>
+        <img id="lose" src="images/youlose.png" class="hidden" />
+        <img id="win" src="images/youwin.png" class="hidden" />
+    </div>
+    <div id="aboutWindow" class="hidden">
+        <h5>StarWars - Game</h5>
+        <p>
+            Ce projet a été réalisé dans le cadre de ma formation Développeur Front-End avec OpenClassrooms.
+        </p>
+        <h5>Technologies utilisées</h5>
+        <div class="techno">
+            <a href="http://www.w3.org/html/logo/">
+                <img src="https://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-semantics.png" width="92" height="30" alt="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, and Semantics" title="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, and Semantics">
+            </a>
+            <a href="https://fr.wikipedia.org/wiki/JavaScript">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" height="30" alt="Javascript" />
+            </a>
+            <a href="https://brand.jquery.org/">
+                <img src="https://upload.wikimedia.org/wikipedia/fr/b/b3/Jquery-logo.png" height="30" alt="JQuery" />
+            </a>
+        </div>
+        <hr />
+        <h5>Règles du jeu</h5>
+        <div class="rules">
+            <p>
+                Sur une planète de la galaxy, deux joueurs positionnés aléatoirement sans se toucher s'affrontent dans un combat mortel.<br />
+                Des obstacles seront aussi de la partie (leur nombre pouvant être définit dans le paramètrage), eux aussi positionnés aléatoirement.<br />
+                Pour que le combat soit le plus exitant possible, entre quatres et huits armes positionnées aléatoirement, s'afficheront sur la carte.<br />
+                Les joueurs pourront se déplacer chacun leur tour dans l'une des quatres directions suivantes : nord, est, sud, ouest mais uniquement de trois à six cases (selon le paramètrage) sauf dans le cas où il y aurait un obstacle ou un des bords de la carte.<br />
+                Si un joueur se positionne sur une case contenant une arme, il prend l'arme de la case et pose son arme actuelle sur celle-ci.<br />
+                <br />
+                Lorsque que les deux joueurs sont côté à côté (pas en diagonale), le combat peut commencer.<br />
+                C'est le joueur qui doit jouer au prochain tour qui commence le combat.<br />
+                <ul>
+                    <li>Chaque joueur attaque chacun son tour.</li>
+                    <li>Les dégâts infligés dépendent de l’arme possédée par le joueur.</li>
+                    <li>Le joueur peut choisir d’attaquer ou de se défendre contre le prochain coup.</li>
+                    <li>Lorsque le joueur se défend, il encaisse 50% de dégâts en moins qu’en temps normal.</li>
+                    <li>Dès que les points de vie d’un joueur (initialement à 100) tombent à 0 , celui-ci a perdu. Un message s’affiche et la partie est terminée.</li>
+                </ul>
+                <div>Les mouvements</div>
+                <p class="movesContainer">
+                    Pour déplacer un joueur sur la carte, par défaut, on utilise la souris et on clique sur l'une des casses ayant une fleche.<br />
+                    Vous pouvez paramètrer ce mode de déplacement au niveau de la configuration et donc choisir le clavier.<br />
+                    Les touches disponibles pour le déplacement des joueurs sont alors les touches suivants : <img src="images/arrow_keys.jpg" width="75" alt="touches fléchées"/>.<br />
+                    Dans ce mode, le joueur peut se déplacer dans les 4 directions initiales mais celui-ci peut changer de direction à tout moment, comparé au déplacement via la souris, en fonction du nombre de déplacement qui lui reste.
+                </p>
+                <div>Les planètes</div>
+                <div class="planetsContainer">
+                    <span><img src="images/planets/dagobah.png" height="30" alt="dagobah" title="dagobah" />Dagobah</span>
+                    <span><img src="images/planets/deathstar.png" height="30" alt="L'étoile noire" title="L'étoile noire" />L'étoile noire</span>
+                    <span><img src="images/planets/hoth.png" height="30" alt="Hoth" title="Hoth" />Hoth</span>
+                    <span><img src="images/planets/tatooine.png" height="30" alt="Tatooine" title="Tatooine" />Tatooine</span>
+                </div>
+                <div>Les personnages</div>
+                <div class="charactersContainer">
+                    <span class="character"><img src="images/players/chewbacca-mini.png" height="30" alt="Chewbacca" title="Chewbacca" /><br />Chewbacca</span>
+                    <span class="character"><img src="images/players/darkmaul-mini.png" height="30" alt="Dark maul" title="Dark maul" /><br />Dark maul</span>
+                    <span class="character"><img src="images/players/darkvador-mini.png" height="30" alt="Dark vador" title="Dark vador" /><br />Dark vador</span>
+                    <span class="character"><img src="images/players/luke-mini.png" height="30" alt="Luke Skywalker" title="Luke Skywalker" /><br />Luke Skywalker</span>
+                    <span class="character"><img src="images/players/trooper-mini.png" height="30" alt="StormTrooper" title="StormTrooper" /><br />StormTrooper</span>
+                    <span class="character"><img src="images/players/yoda-mini.png" height="30" alt="Yoda" title="Yoda" /><br />Yoda</span>
+                </div>
+                <div>Les armes</div>
+                <div class="weaponsContainer">
+                    <span><img src="images/weapons/grenade.png" height="30" alt="La grenade" title="La grenade" />La grenade (dégats : 10)</span>
+                    <span><img src="images/weapons/phaser.png" height="30" alt="Le pistolet laser" title="Le pistolet laser" />Le pistolet laser (dégats : 20)</span>
+                    <span><img src="images/weapons/blaster.png" height="30" alt="Le fusil" title="Le fusil" />Le fusil (dégats : 30)</span>
+                    <span><img src="images/weapons/sabrelaser.png" height="30" alt="Le sabre laser" title="Le sabre laser" />Le sabre laser (dégats : 40)</span>
+                    <span><img src="images/weapons/xwing.png" height="30" alt="Le x-wing" title="Le x-wing" />Le x-wing (dégats : 50)</span>
+                    <span><img src="images/weapons/faucon.png" height="30" alt="Le faucon millenium" title="Le faucon millenium" />Le faucon millenium (dégats : 50)</span>
+                    <span><img src="images/weapons/tiefighter.png" height="30" alt="Le Tie Fighter" title="Le Tie Fighter" />Le Tie Fighter (dégats : 50)</span>
+                </div>
+            </p>
+        </div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="aboutCloseBtn">Fermer</button>
+    </div>
+    <div id="configWindow" class="hidden">
+        <h5>Configuration</h5>
+        <hr />
+        <div class="configRow">
+            <label>Nombre de lignes : </label>
+            <div class="lightsaber ligthblue">
+                <div class="lightsaber_track">
+                    <div class="outer_glow"></div>
+                    <div class="middle_glow"></div>
+                    <div class="lightsaber_thumb"></div>
+                </div>
+                <input id="rngMaxRowsOnMap" type="range" value="12" min="8" max="24" />
+            </div>
+        </div>
+        <div class="configRow">
+            <label>Nombre de colonnes : </label>
+            <div class="lightsaber ligthred">
+                <div class="lightsaber_track">
+                    <div class="outer_glow"></div>
+                    <div class="middle_glow"></div>
+                    <div class="lightsaber_thumb"></div>
+                </div>
+                <input id="rngMaxColsOnMap" type="range" value="12" min="8" max="24" />
+            </div>
+        </div>
+        <div class="configRow">
+            <label>Nombre d'obstacles : </label>
+            <div class="lightsaber ligthpurple">
+                <div class="lightsaber_track">
+                    <div class="outer_glow"></div>
+                    <div class="middle_glow"></div>
+                    <div class="lightsaber_thumb"></div>
+                </div>
+                <input id="rngObstacles" type="range" value="14" min="5" max="14" />
+            </div>
+        </div>
+        <div class="configRow">
+            <label>Nombre d'armes : </label>
+            <div class="lightsaber ligthgreen">
+                <div class="lightsaber_track">
+                    <div class="outer_glow"></div>
+                    <div class="middle_glow"></div>
+                    <div class="lightsaber_thumb"></div>
+                </div>
+                <input id="rngWeapons" type="range" value="4" min="2" max="8" class="lightsaber" />
+            </div>
+        </div>
+        <div class="configRow">
+            <label>Nombre de cases de déplacement : </label>
+            <div class="lightsaber ligthyellow">
+                <div class="lightsaber_track">
+                    <div class="outer_glow"></div>
+                    <div class="middle_glow"></div>
+                    <div class="lightsaber_thumb"></div>
+                </div>
+                <input id="rngPlayersMoves" type="range" value="4" min="1" max="6" class="lightsaber" />
+            </div>
+        </div>
+        <div class="configRow">
+            <label>Déplacements à la souris : </label><input id="chkUseMouse" type="checkbox" checked="checked" />
+        </div><br />
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="configCloseBtn">Enregistrer</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="configResetBtn">Reset</button>
+    </div>
+</body>
+</html>

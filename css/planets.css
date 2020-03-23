@@ -1,0 +1,47 @@
+﻿.planet {
+    background-size: 100% 100%;
+}
+
+.deathstar-tile {
+    background-image: url(../images/planets/deathstar-tile.jpg);
+}
+
+.deathstar-obstacle {
+    background-image: url(../images/planets/deathstar-obstacle.jpg);
+}
+
+.hoth-tile {
+    background-image: url(../images/planets/hoth-tile.jpg);
+}
+
+.hoth-obstacle {
+    background-image: url(../images/planets/hoth-obstacle.jpg);
+}
+
+.dagobah-tile {
+    background-image: url(../images/planets/dagobah-tile.jpg);
+}
+
+.dagobah-obstacle {
+    background-image: url(../images/planets/dagobah-obstacle.jpg);
+}
+
+.endor-tile {
+    background-image: url(../images/planets/endor-tile.jpg);
+}
+
+.endor-obstacle {
+    background-image: url(../images/planets/endor-obstacle.jpg);
+}
+
+.tatooine-tile {
+    background-image: url(../images/planets/tatooine-tile.jpg);
+}
+
+.tatooine-obstacle {
+    background-image: url(../images/planets/tatooine-obstacle.jpg);
+}
+
+#planetImg {
+    margin-left: 10px;
+}

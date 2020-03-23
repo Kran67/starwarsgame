@@ -1,0 +1,50 @@
+﻿.mdl-cell.grenade:before {
+    background-image: url(../images/weapons/grenade.png);
+}
+
+.mdl-cell.phaser:before {
+    background-image: url(../images/weapons/phaser.png);
+}
+
+.mdl-cell.blaster:before {
+    background-image: url(../images/weapons/blaster.png);
+}
+
+.mdl-cell.sabrelaser:before {
+    background-image: url(../images/weapons/sabrelaser.png);
+}
+
+.mdl-cell.xwing:before {
+    background-image: url(../images/weapons/xwing.png);
+}
+
+.mdl-cell.faucon:before {
+    background-image: url(../images/weapons/faucon.png);
+}
+
+.mdl-cell.tiefighter:before {
+    background-image: url(../images/weapons/tiefighter.png);
+}
+
+.mdl-cell.grenade.animate:before,
+.mdl-cell.phaser.animate:before,
+.mdl-cell.blaster.animate:before,
+.mdl-cell.sabrelaser.animate:before,
+.mdl-cell.xwing.animate:before,
+.mdl-cell.faucon.animate:before,
+.mdl-cell.tiefighter.animate:before {
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+    animation-name: scale;
+}
+
+@keyframes scale {
+    0% {
+        transform:none;
+    }
+    100% {
+        transform:scale(0.5, 0.5);
+    }
+}

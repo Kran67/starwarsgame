@@ -1,0 +1,89 @@
+﻿.mdl-cell.darkvador:before {
+    background-image: url(../images/players/darkvador-mini.png);
+}
+
+.mdl-cell.darkmaul:before {
+    background-image: url(../images/players/darkmaul-mini.png);
+}
+
+.mdl-cell.stormtrooper:before {
+    background-image: url(../images/players/trooper-mini.png);
+}
+
+.mdl-cell.yoda:before {
+    background-image: url(../images/players/yoda-mini.png);
+}
+
+.mdl-cell.luke:before {
+    background-image: url(../images/players/luke-mini.png);
+}
+
+.mdl-cell.chewbacca:before {
+    background-image: url(../images/players/chewbacca-mini.png);
+}
+
+#player1Name,
+#player2Name {
+    font-weight: bold;
+}
+
+.life {
+    width: 150px;
+    background-repeat: no-repeat;
+    background-color: lime;
+    height: 10px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #FFF;
+    transition: width ease 0.5s;
+}
+
+.life._75 {
+    background-color: yellow;
+}
+
+.life._50 {
+    background-color: orange;
+}
+
+.life._25 {
+    background-color: red;
+}
+
+.checkmark {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+    .checkmark.darkvador {
+        background-image: url(../images/players/darkvador.png);
+    }
+
+    .checkmark.darkmaul {
+        background-image: url(../images/players/darkmaul.png);
+    }
+
+    .checkmark.stormtrooper {
+        background-image: url(../images/players/stormtrooper.png);
+    }
+
+    .checkmark.yoda {
+        background-image: url(../images/players/yoda.png);
+    }
+
+    .checkmark.luke {
+        background-image: url(../images/players/luke.png);
+    }
+
+    .checkmark.chewbacca {
+        background-image: url(../images/players/chewbacca.png);
+    }
+
+.playerImage {
+    max-width: 188px;
+}
+
+    .playerImage.shield {
+        filter: drop-shadow(0 0 6px blue);
+    }

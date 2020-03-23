@@ -1,0 +1,553 @@
+@import "starwarsintro.css";
+@import "map.css";
+@import "planets.css";
+@import "weapons.css";
+@import "players.css";
+
+@font-face {
+    font-family: 'StarJedi';
+    src: url('/fonts/Starjedi.eot');
+    src: url('/fonts/Starjedi.otf') format('truetype'), url('/fonts/Starjedi.woff') format('woff'), url('/fonts/Starjedi.eot?#iefix') format('embedded-opentype'), url('/fonts/Starjedi.svg#StarJedi') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-image: url(../images/space.jpg);
+    color: #FFF;
+}
+
+h1,
+h2,
+h5,
+header {
+    text-align: center;
+    font-family: StarJedi;
+}
+
+.title {
+    color: #feda4a;
+}
+
+main {
+    padding: 10px;
+}
+
+.main {
+    display: flex;
+}
+
+.left,
+.right {
+    width: 200px;
+    border: 1px solid silver;
+    box-sizing: border-box;
+    padding: 5px;
+    background-color: #000;
+    text-align: center;
+}
+
+    .left label,
+    .right label {
+        text-decoration: underline;
+    }
+
+    .left div,
+    .right div {
+        text-align: left;
+    }
+
+#combatWindow .main,
+#combatWindow .left,
+#combatWindow .right {
+    background-color: transparent;
+    height: 98%;
+}
+
+.middle {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.top {
+    height: 128px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#glass {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+#character-choice,
+#combatWindow,
+#aboutWindow,
+#configWindow {
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    border-radius: 20px;
+    background-color: #FFF;
+    width: 600px;
+    height: 550px;
+    box-shadow: 5px 5px 5px 0 gray;
+    color: #000;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+#combatWindow {
+    width: 800px;
+    height: 660px;
+}
+
+    #combatWindow .main {
+        display: flex;
+    }
+
+        #combatWindow .main .left {
+            order: 0;
+        }
+
+        #combatWindow .main .middle {
+            display: flex;
+            flex-direction: column;
+            order: 1;
+            align-items: center;
+        }
+
+        #combatWindow .main .right {
+            order: 2;
+        }
+
+
+.rebellion-characters, .darkside-characters {
+    display: flex;
+    justify-content: center;
+}
+
+#character-choice .character {
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid #000;
+    width: 100px;
+    height: 150px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    margin: 0 20px;
+}
+
+    #character-choice .character:before {
+        content: attr(data-name);
+        position: absolute;
+        left: 0;
+        top: -25px;
+        right: 0;
+        height: 20px;
+        text-align: center;
+    }
+
+    /* Hide the browser's default checkbox */
+    #character-choice .character input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    #character-choice .character .checkmark {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        box-sizing: border-box;
+        border: 2px solid transparent;
+    }
+
+    #character-choice .character:hover {
+        transform: scale(1.1, 1.1);
+        box-shadow: 2px 2px 2px 0 #000;
+    }
+
+    #character-choice .character.rebellion input:checked ~ .checkmark {
+        border-color: lime;
+    }
+
+    #character-choice .character.darkside input:checked ~ .checkmark {
+        border-color: red;
+    }
+
+    #character-choice .character input:disabled ~ .checkmark {
+        opacity: 0.5;
+    }
+
+.sep {
+    display: inline-block;
+    width: 20px;
+}
+
+#lose,
+#win {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+    #lose.posLeft,
+    #win.posLeft {
+        left: 10px;
+    }
+
+    #lose.posRight,
+    #win.posRight {
+        right: 10px;
+    }
+
+#hit1, #hit2 {
+    position: absolute;
+    font-size: 72px;
+    font-weight: bold;
+    color: transparent;
+    top: 50%;
+    animation-name: zoom, slideUpAndFade;
+    animation-duration: 1s, 1s;
+    animation-delay: 0s, 1s;
+    animation-timing-function: ease, ease;
+    animation-fill-mode: forwards, forwards;
+}
+
+    #hit1:after, #hit2:after {
+        position: relative;
+        content: attr(data-damages);
+        background: linear-gradient(to bottom, #FF9393, #510000);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 4px black;
+    }
+
+#hit1 {
+    left: 80px;
+}
+
+#hit2 {
+    right: 80px;
+}
+
+
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUpAndFade {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        top: 25%;
+    }
+}
+
+header h1,
+header .mdl-button {
+    position: relative;
+    z-index: 1;
+}
+
+#aboutWindow,
+#configWindow {
+    padding: 10px;
+    opacity: 0.95;
+}
+
+    #aboutWindow p {
+        text-align: justify;
+    }
+
+    #aboutWindow .techno {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    #aboutWindow .rules {
+        overflow-y: auto;
+        height: 250px;
+        text-align: justify;
+    }
+
+        #aboutWindow .rules div {
+            font-weight: bold;
+        }
+
+        #aboutWindow .rules .planetsContainer img,
+        #aboutWindow .rules .weaponsContainer img {
+            margin-right: 10px;
+        }
+
+.planetsContainer,
+.charactersContainer,
+.weaponsContainer {
+    font-weight: normal !important;
+    display: flex;
+    justify-content: space-around;
+}
+
+.weaponsContainer {
+    flex-direction: column;
+}
+
+.charactersContainer .character {
+    text-align: center;
+}
+
+.content-header,
+.content-body {
+    font-size: 80px;
+    line-height: 120px;
+}
+
+.star-wars-intro .fade {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    top: 0;
+    background-image: linear-gradient(0, transparent, black 75%);
+    z-index: 1;
+}
+
+.content-header {
+    margin-bottom: 400px;
+}
+
+
+#configWindow {
+    width: 800px;
+    height: 300px;
+}
+
+.configRow {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#configWindow label {
+    width: 200px;
+    text-align: left;
+}
+
+.ligthblue {
+    --blueLigthColor: #1D1DFF;
+    --blueShadowColor: #D2CCFA;
+}
+
+.ligthred {
+    --redLigthColor: #FF1D1D;
+    --redShadowColor: #FACCD2;
+}
+
+.ligthpurple {
+    --purpleLigthColor: #FF1DFF;
+    --purpleShadowColor: #FACCFA;
+}
+
+.ligthgreen {
+    --greenLigthColor: #1DFF1D;
+    --greenShadowColor: #D2FACC;
+}
+
+.ligthyellow {
+    --yellowLigthColor: #FFCD1D;
+    --yellowShadowColor: #FFEFAA;
+}
+
+#configWindow .lightsaber {
+    flex: 1;
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-image: url("../images/lightsaber-hilt.png");
+    background-size: 43px 25px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-right: 20px;
+    padding-left: 43px;
+    align-items: center;
+}
+
+    #configWindow .lightsaber:after {
+        content: attr(data-value);
+        position: absolute;
+        right: 0;
+        width: 20px;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #configWindow .lightsaber .lightsaber_track {
+        display: flex;
+        position: absolute;
+        left: 43px;
+        height: 8px;
+        width: 0;
+    }
+
+        #configWindow .lightsaber .lightsaber_track .outer_glow {
+            position: absolute;
+            border-radius: 5px;
+            filter: blur(3px);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            animation: glow_animation 0.8s infinite;
+        }
+
+        #configWindow .lightsaber .lightsaber_track .middle_glow {
+            position: absolute;
+            border-radius: 5px;
+            top: 1px;
+            left: 0;
+            right: 0;
+            bottom: 1px;
+            filter: blur(1px);
+            animation: glow_animation 0.8s infinite;
+        }
+
+        #configWindow .lightsaber .lightsaber_track .lightsaber_thumb {
+            top: 3px;
+            left: 0;
+            right: 0;
+            bottom: 3px;
+            position: absolute;
+            background-color: #FFF;
+        }
+
+    #configWindow .lightsaber.ligthblue .lightsaber_track .outer_glow {
+        background-color: var(--blueLigthColor);
+    }
+
+    #configWindow .lightsaber.ligthblue .lightsaber_track .middle_glow {
+        background-color: var(--blueShadowColor);
+    }
+
+#configWindow .lightsaber.ligthred .lightsaber_track .outer_glow {
+    background-color: var(--redLigthColor);
+}
+
+#configWindow .lightsaber.ligthred .lightsaber_track .middle_glow {
+    background-color: var(--redShadowColor);
+}
+
+#configWindow .lightsaber.ligthpurple .lightsaber_track .outer_glow {
+    background-color: var(--purpleLigthColor);
+}
+
+#configWindow .lightsaber.ligthpurple .lightsaber_track .middle_glow {
+    background-color: var(--purpleShadowColor);
+}
+
+#configWindow .lightsaber.ligthgreen .lightsaber_track .outer_glow {
+    background-color: var(--greenLigthColor);
+}
+
+#configWindow .lightsaber.ligthgreen .lightsaber_track .middle_glow {
+    background-color: var(--greenShadowColor);
+}
+
+#configWindow .lightsaber.ligthyellow .lightsaber_track .outer_glow {
+    background-color: var(--yellowLigthColor);
+}
+
+#configWindow .lightsaber.ligthyellow .lightsaber_track .middle_glow {
+    background-color: var(--yellowShadowColor);
+}
+
+#configWindow .lightsaber input[type=range] {
+        flex: 1;
+        -webkit-appearance: none;
+        background: transparent;
+        cursor: grab;
+        cursor: pointer;
+        z-index: 1;
+        height: 20px;
+    }
+
+#configWindow input[type=range]:active {
+    cursor: grabbing;
+    outline: none;
+    border: none;
+}
+
+#configWindow input[type=range]:focus {
+    outline: none;
+    border: none;
+}
+
+::-webkit-slider-runnable-track {
+    background: transparent;
+}
+
+::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 11px;
+    height: 15px;
+}
+
+@keyframes glow_animation {
+    0% {
+        transform: scaleY(1);
+    }
+    20% {
+        transform: scaleY(1.1);
+    }
+    30% {
+        transform: scaleY(1.2);
+    }
+    60% {
+        transform: scaleY(1.05);
+    }
+    80% {
+        transform: scaleY(1.1);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
